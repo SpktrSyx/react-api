@@ -13,3 +13,10 @@ ou
 ```
 yarn add axios
 ```
+Add Bootstrap + in index.html
+```
+ yarn add react-bootstrap
+```
+----
+{...data}
+téléversement des propritétés d'un objet
