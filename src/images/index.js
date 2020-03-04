@@ -1,0 +1,1 @@
+export { default as StarWarsLogo } from './logoStarWars.jpg';
