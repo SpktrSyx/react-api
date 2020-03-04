@@ -1,10 +1,8 @@
 import React from 'react';
-import './App.css';
+import Container from './containers/Container';
 
 const App = () =>
-  <div>
-    Yooo
-  </div>
+  <Container />
 ;
 
 export default App;
