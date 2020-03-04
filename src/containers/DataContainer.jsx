@@ -6,13 +6,17 @@ import Planet from '../components/Planet';
 import { ListGroup, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import parseSwapiUrl from '../utils/parseSwapiUrl';
+import { Starship, Film } from '../components';
+
 
 const componentsByResource = {
   people: Character,
   planets: Planet,
+  starships: Starship,
+  films: Film,
 }
 
-const ListItem = ({ name, url }) => {
+const ListItem = ({ name, url, title }) => {
   
   const [resource, id] = parseSwapiUrl(url);
   
@@ -20,6 +24,7 @@ const ListItem = ({ name, url }) => {
     <ListGroup.Item>
       <Link to={`/${resource}/${id}`}>
         {name}
+        {title}
       </Link>
     </ListGroup.Item>
   );
@@ -70,7 +75,7 @@ export default class DataContainer extends Component {
               color="#FFCF39"
               height={100}
               width={100}
-              timeout={3000} //3 secs
+              // timeout={3000} //3 secs
             />
           </div>
         );
