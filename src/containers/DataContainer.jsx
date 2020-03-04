@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Character from '../components/Character';
 import Loader from 'react-loader-spinner';
 import Planet from '../components/Planet';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const componentsByResource = {
@@ -75,7 +75,7 @@ export default class DataContainer extends Component {
         );
       }
 
-      if (!id) {
+      if (!id && data.results) {
         return (
           <ListGroup>
             {data.results.map( (item, index) =>
@@ -87,7 +87,16 @@ export default class DataContainer extends Component {
 
     const ComponentName = componentsByResource[resource] || 'div';
 
-    return <ComponentName {...data} />;
+    return (
+      <div>
+        <Link to={`/${resource}`}>
+          <Button variant="primary">
+            Back to list
+          </Button>
+        </Link>
+        <ComponentName {...data} />
+      </div>
+    );
   }
 
 }
