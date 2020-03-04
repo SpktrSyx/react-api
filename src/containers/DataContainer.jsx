@@ -4,15 +4,20 @@ import Character from '../components/Character';
 import Loader from 'react-loader-spinner';
 import Planet from '../components/Planet';
 
+const componentsByResource = {
+  people: Character,
+  planets: Planet,
+}
+
 export default class DataContainer extends Component {
   state = {
     data: null,
   }
 
-
   componentDidMount = () => {
+    const { resource, id } = this.props.match.params;
     console.log("Le composant Container vient juste d'être monté!");
-    Axios.get('https://swapi.co/api/planets/1')
+    Axios.get(`https://swapi.co/api/${resource}/${id}`)
     .then(response => this.setState({ data: response.data }))
     .catch(error => console.error(error));
   }
@@ -20,6 +25,7 @@ export default class DataContainer extends Component {
   
   render = () => {
     const { data } = this.state;
+    const { resource } = this.props.match.params;
 
       if (!data) {
         return (
@@ -35,7 +41,9 @@ export default class DataContainer extends Component {
         );
       }
 
-    return <Planet {...data} />;
+    const ComponentName = componentsByResource[resource] || 'div';
+
+    return <ComponentName {...data} />;
   }
 
 }
