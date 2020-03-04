@@ -2,6 +2,7 @@ import React, { Component } from 'react' ;
 import Axios from 'axios';
 import Character from '../components/Character';
 import Loader from 'react-loader-spinner';
+import Planet from '../components/Planet';
 
 export default class DataContainer extends Component {
   state = {
@@ -11,7 +12,7 @@ export default class DataContainer extends Component {
 
   componentDidMount = () => {
     console.log("Le composant Container vient juste d'être monté!");
-    Axios.get('https://swapi.co/api/people/1')
+    Axios.get('https://swapi.co/api/planets/1')
     .then(response => this.setState({ data: response.data }))
     .catch(error => console.error(error));
   }
@@ -34,7 +35,7 @@ export default class DataContainer extends Component {
         );
       }
 
-    return <Character {...data} />;
+    return <Planet {...data} />;
   }
 
 }
